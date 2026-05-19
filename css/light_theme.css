@@ -1,0 +1,60 @@
+:root,
+[data-bs-theme="light"] {
+    --header-bg: #FFFFFF;
+    --sidebar-bg: #FFFFFF;
+    --main-bg: #f8f9fa;
+    --card-bg: #FFFFFF;
+    --footer-bg: #FFFFFF;
+    --footer-line-bg: #000000;
+    --table-head-bg: #f1f1f1;
+    --table-body-bg: #FFFFFF;
+    --offcanvas-bg: #FFFFFF;
+}
+
+.header-theme {
+    background-color: var(--header-bg) !important;
+}
+
+.sidebar-theme {
+    background-color: var(--sidebar-bg) !important;
+}
+
+.main-bg {
+    background-color: var(--main-bg) !important;
+}
+
+.card-theme {
+    background-color: var(--card-bg) !important;
+}
+
+.footer-theme {
+    background-color: var(--footer-bg) !important;
+}
+
+.footer-line {
+    background-color: var(--footer-line-bg) !important;
+}
+
+.offcanvas {
+    background-color: var(--offcanvas-bg) !important;
+}
+
+.offcanvas .offcanvas-header {
+    background-color: var(--offcanvas-bg) !important;
+}
+
+.offcanvas .offcanvas-body {
+    background-color: var(--offcanvas-bg) !important;
+}
+
+.table thead {
+    background-color: var(--table-head-bg) !important;
+}
+
+.table thead th {
+    background-color: var(--table-head-bg) !important;
+}
+
+.table tbody td {
+    background-color: var(--table-body-bg) !important;
+}

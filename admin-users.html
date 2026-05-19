@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="ru" data-bs-theme="light">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>HOLY FIND - Пользователи</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="../css/admin.css" />
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="../js/theme.js"></script>
+    <style>
+        .user-card {
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+        .user-card:hover {
+            background-color: rgba(0,0,0,0.02);
+        }
+        .detail-row {
+            font-size: 14px;
+        }
+        [data-bs-theme="dark"] .user-card:hover {
+            background-color: rgba(255,255,255,0.05);
+        }
+    </style>
+</head>
+<body>
+    <div class="offcanvas offcanvas-start" tabindex="-1" id="mobileMenu" aria-labelledby="mobileMenuLabel">
+        <div class="offcanvas-header border-bottom">
+            <h5 class="offcanvas-title fw-bold" id="mobileMenuLabel">Меню</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Закрыть"></button>
+        </div>
+        <div class="offcanvas-body">
+            <ul class="list-unstyled mb-4">
+                <li><a href="admin.html" class="d-block px-3 py-3 text-decoration-none fw-semibold fs-5 rounded sidebar-mobile-link">Главная</a></li>
+                <li><a href="admin-auth.html" class="d-block px-3 py-3 text-decoration-none fw-semibold fs-5 rounded sidebar-mobile-link">Авторизация</a></li>
+                <li><a href="admin-comments.html" class="d-block px-3 py-3 text-decoration-none fw-semibold fs-5 rounded sidebar-mobile-link">Комментарии</a></li>
+                <li><a href="admin-users.html" class="d-block px-3 py-3 text-decoration-none fw-semibold fs-5 rounded sidebar-mobile-link active-link">Пользователи</a></li>
+                <li><a href="admin-collections.html" class="d-block px-3 py-3 text-decoration-none fw-semibold fs-5 rounded sidebar-mobile-link">Коллекции</a></li>
+            </ul>
+            <hr />
+            <button class="btn btn-outline-secondary w-100 d-flex align-items-center justify-content-center gap-2 py-3 theme-toggle-offcanvas" type="button">
+                <img src="../img/sun.png" alt="Тема" class="theme-icon-offcanvas" style="width: 24px; height: 24px;" />
+                <span class="theme-text-offcanvas">Светлая тема</span>
+            </button>
+        </div>
+    </div>
+
+    <header class="navbar navbar-expand-lg sticky-top shadow-sm py-0 header-theme">
+        <div class="container-fluid px-0">
+            <div class="d-flex align-items-center justify-content-between w-100 px-4 px-md-5" style="height: 80px;">
+                <button class="btn btn-link text-body p-0 d-lg-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#mobileMenu" aria-controls="mobileMenu">
+                    <img src="../img/burger.png" alt="Меню" style="width: 32px; height: 32px;" />
+                </button>
+                <a href="admin.html" class="logo mx-auto mx-lg-0">
+                    <div class="logo-h"><img src="../img/logo.png" alt="H" /></div>
+                    <p class="logo-text d-none d-lg-block">oly find</p>
+                </a>
+                <div class="d-flex align-items-center gap-3">
+                    <button class="btn btn-outline-secondary d-none d-lg-flex align-items-center justify-content-center p-2 rounded-circle theme-toggle-desktop" type="button" style="width: 44px; height: 44px;">
+                        <img src="../img/sun.png" alt="Тема" class="theme-icon-desktop" style="width: 22px; height: 22px;" />
+                    </button>
+                    <a href="profile.html">
+                        <img src="../img/icon.png" alt="Профиль" class="rounded-circle border border-light" style="width: 44px; height: 44px; object-fit: cover;" />
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="container-fluid p-0">
+        <div class="row g-0">
+            <div class="col-lg-3 col-xl-2 d-none d-lg-flex flex-column vh-100 position-sticky top-0 pt-5 border-end sidebar-theme">
+                <nav>
+                    <ul class="list-unstyled mb-0">
+                        <li><a href="admin.html" class="sidebar-link d-block px-4 py-3 text-decoration-none fw-semibold fs-5">Главная</a></li>
+                        <li><a href="admin-auth.html" class="sidebar-link d-block px-4 py-3 text-decoration-none fw-semibold fs-5">Авторизация</a></li>
+                        <li><a href="admin-comments.html" class="sidebar-link d-block px-4 py-3 text-decoration-none fw-semibold fs-5">Комментарии</a></li>
+                        <li><a href="admin-users.html" class="sidebar-link d-block px-4 py-3 text-decoration-none fw-semibold fs-5 active">Пользователи</a></li>
+                        <li><a href="admin-collections.html" class="sidebar-link d-block px-4 py-3 text-decoration-none fw-semibold fs-5">Коллекции</a></li>
+                    </ul>
+                </nav>
+            </div>
+
+            <div class="col-lg-9 col-xl-10 main-bg">
+                <div class="d-flex align-items-center justify-content-center" style="min-height: calc(100vh - 80px);">
+                    <div class="col-12 col-xxl-10 py-5 px-4">
+                        <div class="card border-0 shadow-sm rounded-4 card-theme">
+                            <div class="card-header bg-transparent border-0 pt-5 pb-0 px-5">
+                                <h5 class="fw-bold mb-0 fs-3">Пользователи</h5>
+                            </div>
+                            <div class="card-body px-5 pb-5">
+
+                                <!-- ДЕСКТОП -->
+                                <div class="d-none d-md-block table-responsive">
+                                    <table class="table table-hover align-middle mb-0 fs-6">
+                                        <thead class="table-light">
+                                            <tr>
+                                                <th scope="col" class="rounded-start-3 text-uppercase small text-muted fw-normal" style="width: 25%;">Имя</th>
+                                                <th scope="col" class="text-uppercase small text-muted fw-normal" style="width: 30%;">Email</th>
+                                                <th scope="col" class="text-uppercase small text-muted fw-normal" style="width: 18%;">Роль</th>
+                                                <th scope="col" class="text-uppercase small text-muted fw-normal" style="width: 15%;">Статус</th>
+                                                <th scope="col" class="rounded-end-3 text-uppercase small text-muted fw-normal" style="width: 12%;"></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr><td class="fw-semibold">Анна Кузнецова</td><td class="text-muted">anna.k@mail.ru</td><td><span class="badge bg-dark rounded-3 px-2 py-1 fs-6">Админ</span></td><td><span class="badge bg-success rounded-3 px-2 py-1 fs-6">Активен</span></td><td><button class="btn btn-outline-secondary btn-sm rounded-3" data-bs-toggle="modal" data-bs-target="#editUser0">Изменить</button></td></tr>
+                                            <tr><td class="fw-semibold">Максим Дорохов</td><td class="text-muted">max.d@mail.ru</td><td><span class="badge bg-secondary rounded-3 px-2 py-1 fs-6">Пользователь</span></td><td><span class="badge bg-success rounded-3 px-2 py-1 fs-6">Активен</span></td><td><button class="btn btn-outline-secondary btn-sm rounded-3" data-bs-toggle="modal" data-bs-target="#editUser1">Изменить</button></td></tr>
+                                            <tr><td class="fw-semibold">Елена Волкова</td><td class="text-muted">elena.v@mail.ru</td><td><span class="badge bg-secondary rounded-3 px-2 py-1 fs-6">Пользователь</span></td><td><span class="badge bg-success rounded-3 px-2 py-1 fs-6">Активен</span></td><td><button class="btn btn-outline-secondary btn-sm rounded-3" data-bs-toggle="modal" data-bs-target="#editUser2">Изменить</button></td></tr>
+                                            <tr><td class="fw-semibold">Дмитрий Соколов</td><td class="text-muted">dmitry.s@mail.ru</td><td><span class="badge bg-secondary rounded-3 px-2 py-1 fs-6">Пользователь</span></td><td><span class="badge bg-danger rounded-3 px-2 py-1 fs-6">Заблокирован</span></td><td><button class="btn btn-outline-secondary btn-sm rounded-3" data-bs-toggle="modal" data-bs-target="#editUser3">Изменить</button></td></tr>
+                                            <tr><td class="fw-semibold">Ольга Морозова</td><td class="text-muted">olga.m@mail.ru</td><td><span class="badge bg-dark rounded-3 px-2 py-1 fs-6">Админ</span></td><td><span class="badge bg-success rounded-3 px-2 py-1 fs-6">Активен</span></td><td><button class="btn btn-outline-secondary btn-sm rounded-3" data-bs-toggle="modal" data-bs-target="#editUser4">Изменить</button></td></tr>
+                                            <tr><td class="fw-semibold">Сергей Лебедев</td><td class="text-muted">sergey.l@mail.ru</td><td><span class="badge bg-secondary rounded-3 px-2 py-1 fs-6">Пользователь</span></td><td><span class="badge bg-success rounded-3 px-2 py-1 fs-6">Активен</span></td><td><button class="btn btn-outline-secondary btn-sm rounded-3" data-bs-toggle="modal" data-bs-target="#editUser5">Изменить</button></td></tr>
+                                            <tr><td class="fw-semibold">Ирина Петрова</td><td class="text-muted">irina.p@mail.ru</td><td><span class="badge bg-secondary rounded-3 px-2 py-1 fs-6">Пользователь</span></td><td><span class="badge bg-success rounded-3 px-2 py-1 fs-6">Активен</span></td><td><button class="btn btn-outline-secondary btn-sm rounded-3" data-bs-toggle="modal" data-bs-target="#editUser6">Изменить</button></td></tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+
+                                <!-- МОБИЛЬНАЯ -->
+                                <div class="d-md-none">
+                                    <div class="user-card card border-0 shadow-sm rounded-4 mb-3 overflow-hidden card-theme" data-bs-toggle="collapse" data-bs-target="#user0" aria-expanded="false">
+                                        <div class="card-body d-flex justify-content-between align-items-center py-3 px-3">
+                                            <div>
+                                                <p class="fw-semibold mb-1">Анна Кузнецова</p>
+                                                <span class="badge bg-dark rounded-3 px-2 py-1 fs-6 me-1">Админ</span>
+                                                <span class="badge bg-success rounded-3 px-2 py-1 fs-6">Активен</span>
+                                            </div>
+                                            <span class="text-muted small">Подробнее ▾</span>
+                                        </div>
+                                        <div class="collapse" id="user0">
+                                            <div class="card-body border-top pt-3 px-3 pb-3">
+                                                <p class="detail-row mb-2"><strong>Email:</strong> anna.k@mail.ru</p>
+                                                <button class="btn btn-outline-secondary btn-sm rounded-3 w-100" data-bs-toggle="modal" data-bs-target="#editUser0">Изменить</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="user-card card border-0 shadow-sm rounded-4 mb-3 overflow-hidden card-theme" data-bs-toggle="collapse" data-bs-target="#user1" aria-expanded="false">
+                                        <div class="card-body d-flex justify-content-between align-items-center py-3 px-3">
+                                            <div>
+                                                <p class="fw-semibold mb-1">Максим Дорохов</p>
+                                                <span class="badge bg-secondary rounded-3 px-2 py-1 fs-6 me-1">Пользователь</span>
+                                                <span class="badge bg-success rounded-3 px-2 py-1 fs-6">Активен</span>
+                                            </div>
+                                            <span class="text-muted small">Подробнее ▾</span>
+                                        </div>
+                                        <div class="collapse" id="user1">
+                                            <div class="card-body border-top pt-3 px-3 pb-3">
+                                                <p class="detail-row mb-2"><strong>Email:</strong> max.d@mail.ru</p>
+                                                <button class="btn btn-outline-secondary btn-sm rounded-3 w-100" data-bs-toggle="modal" data-bs-target="#editUser1">Изменить</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="user-card card border-0 shadow-sm rounded-4 mb-3 overflow-hidden card-theme" data-bs-toggle="collapse" data-bs-target="#user2" aria-expanded="false">
+                                        <div class="card-body d-flex justify-content-between align-items-center py-3 px-3">
+                                            <div>
+                                                <p class="fw-semibold mb-1">Елена Волкова</p>
+                                                <span class="badge bg-secondary rounded-3 px-2 py-1 fs-6 me-1">Пользователь</span>
+                                                <span class="badge bg-success rounded-3 px-2 py-1 fs-6">Активен</span>
+                                            </div>
+                                            <span class="text-muted small">Подробнее ▾</span>
+                                        </div>
+                                        <div class="collapse" id="user2">
+                                            <div class="card-body border-top pt-3 px-3 pb-3">
+                                                <p class="detail-row mb-2"><strong>Email:</strong> elena.v@mail.ru</p>
+                                                <button class="btn btn-outline-secondary btn-sm rounded-3 w-100" data-bs-toggle="modal" data-bs-target="#editUser2">Изменить</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="user-card card border-0 shadow-sm rounded-4 mb-3 overflow-hidden card-theme" data-bs-toggle="collapse" data-bs-target="#user3" aria-expanded="false">
+                                        <div class="card-body d-flex justify-content-between align-items-center py-3 px-3">
+                                            <div>
+                                                <p class="fw-semibold mb-1">Дмитрий Соколов</p>
+                                                <span class="badge bg-secondary rounded-3 px-2 py-1 fs-6 me-1">Пользователь</span>
+                                                <span class="badge bg-danger rounded-3 px-2 py-1 fs-6">Заблокирован</span>
+                                            </div>
+                                            <span class="text-muted small">Подробнее ▾</span>
+                                        </div>
+                                        <div class="collapse" id="user3">
+                                            <div class="card-body border-top pt-3 px-3 pb-3">
+                                                <p class="detail-row mb-2"><strong>Email:</strong> dmitry.s@mail.ru</p>
+                                                <button class="btn btn-outline-secondary btn-sm rounded-3 w-100" data-bs-toggle="modal" data-bs-target="#editUser3">Изменить</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="user-card card border-0 shadow-sm rounded-4 mb-3 overflow-hidden card-theme" data-bs-toggle="collapse" data-bs-target="#user4" aria-expanded="false">
+                                        <div class="card-body d-flex justify-content-between align-items-center py-3 px-3">
+                                            <div>
+                                                <p class="fw-semibold mb-1">Ольга Морозова</p>
+                                                <span class="badge bg-dark rounded-3 px-2 py-1 fs-6 me-1">Админ</span>
+                                                <span class="badge bg-success rounded-3 px-2 py-1 fs-6">Активен</span>
+                                            </div>
+                                            <span class="text-muted small">Подробнее ▾</span>
+                                        </div>
+                                        <div class="collapse" id="user4">
+                                            <div class="card-body border-top pt-3 px-3 pb-3">
+                                                <p class="detail-row mb-2"><strong>Email:</strong> olga.m@mail.ru</p>
+                                                <button class="btn btn-outline-secondary btn-sm rounded-3 w-100" data-bs-toggle="modal" data-bs-target="#editUser4">Изменить</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="user-card card border-0 shadow-sm rounded-4 mb-3 overflow-hidden card-theme" data-bs-toggle="collapse" data-bs-target="#user5" aria-expanded="false">
+                                        <div class="card-body d-flex justify-content-between align-items-center py-3 px-3">
+                                            <div>
+                                                <p class="fw-semibold mb-1">Сергей Лебедев</p>
+                                                <span class="badge bg-secondary rounded-3 px-2 py-1 fs-6 me-1">Пользователь</span>
+                                                <span class="badge bg-success rounded-3 px-2 py-1 fs-6">Активен</span>
+                                            </div>
+                                            <span class="text-muted small">Подробнее ▾</span>
+                                        </div>
+                                        <div class="collapse" id="user5">
+                                            <div class="card-body border-top pt-3 px-3 pb-3">
+                                                <p class="detail-row mb-2"><strong>Email:</strong> sergey.l@mail.ru</p>
+                                                <button class="btn btn-outline-secondary btn-sm rounded-3 w-100" data-bs-toggle="modal" data-bs-target="#editUser5">Изменить</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="user-card card border-0 shadow-sm rounded-4 mb-3 overflow-hidden card-theme" data-bs-toggle="collapse" data-bs-target="#user6" aria-expanded="false">
+                                        <div class="card-body d-flex justify-content-between align-items-center py-3 px-3">
+                                            <div>
+                                                <p class="fw-semibold mb-1">Ирина Петрова</p>
+                                                <span class="badge bg-secondary rounded-3 px-2 py-1 fs-6 me-1">Пользователь</span>
+                                                <span class="badge bg-success rounded-3 px-2 py-1 fs-6">Активен</span>
+                                            </div>
+                                            <span class="text-muted small">Подробнее ▾</span>
+                                        </div>
+                                        <div class="collapse" id="user6">
+                                            <div class="card-body border-top pt-3 px-3 pb-3">
+                                                <p class="detail-row mb-2"><strong>Email:</strong> irina.p@mail.ru</p>
+                                                <button class="btn btn-outline-secondary btn-sm rounded-3 w-100" data-bs-toggle="modal" data-bs-target="#editUser6">Изменить</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <footer class="w-100 border-top footer-theme">
+                    <div class="d-flex flex-column align-items-center justify-content-center py-4 gap-3 px-4 px-md-5">
+                        <p class="mb-0 footer-text">© 2025 HOLY FIND. Все права защищены.</p>
+                        <hr class="border-0 my-0 footer-line" style="width: 100%; max-width: 400px; height: 1px;" />
+                        <a href="mailto:supportholyfind.mail.ru" class="text-body text-decoration-none opacity-50 footer-text">supportholyfind.mail.ru</a>
+                    </div>
+                </footer>
+            </div>
+        </div>
+    </div>
+
+    <!-- 7 модалок для каждого пользователя -->
+    <div class="modal fade" id="editUser0" tabindex="-1" aria-hidden="true"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><h5 class="modal-title fw-bold">Редактировать</h5><button type="button" class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><form><div class="mb-3"><label class="form-label fw-semibold">Имя</label><input type="text" class="form-control rounded-3" value="Анна Кузнецова" /></div><div class="mb-3"><label class="form-label fw-semibold">Email</label><input type="email" class="form-control rounded-3" value="anna.k@mail.ru" /></div><div class="mb-3"><label class="form-label fw-semibold">Роль</label><select class="form-select rounded-3"><option selected>Админ</option><option>Пользователь</option></select></div><div class="mb-3"><label class="form-label fw-semibold">Статус</label><select class="form-select rounded-3"><option selected>Активен</option><option>Заблокирован</option></select></div></form></div><div class="modal-footer"><button class="btn btn-outline-secondary rounded-3" data-bs-dismiss="modal">Отмена</button><button class="btn btn-dark rounded-3">Сохранить</button></div></div></div></div>
+    <div class="modal fade" id="editUser1" tabindex="-1" aria-hidden="true"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><h5 class="modal-title fw-bold">Редактировать</h5><button type="button" class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><form><div class="mb-3"><label class="form-label fw-semibold">Имя</label><input type="text" class="form-control rounded-3" value="Максим Дорохов" /></div><div class="mb-3"><label class="form-label fw-semibold">Email</label><input type="email" class="form-control rounded-3" value="max.d@mail.ru" /></div><div class="mb-3"><label class="form-label fw-semibold">Роль</label><select class="form-select rounded-3"><option>Админ</option><option selected>Пользователь</option></select></div><div class="mb-3"><label class="form-label fw-semibold">Статус</label><select class="form-select rounded-3"><option selected>Активен</option><option>Заблокирован</option></select></div></form></div><div class="modal-footer"><button class="btn btn-outline-secondary rounded-3" data-bs-dismiss="modal">Отмена</button><button class="btn btn-dark rounded-3">Сохранить</button></div></div></div></div>
+    <div class="modal fade" id="editUser2" tabindex="-1" aria-hidden="true"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><h5 class="modal-title fw-bold">Редактировать</h5><button type="button" class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><form><div class="mb-3"><label class="form-label fw-semibold">Имя</label><input type="text" class="form-control rounded-3" value="Елена Волкова" /></div><div class="mb-3"><label class="form-label fw-semibold">Email</label><input type="email" class="form-control rounded-3" value="elena.v@mail.ru" /></div><div class="mb-3"><label class="form-label fw-semibold">Роль</label><select class="form-select rounded-3"><option>Админ</option><option selected>Пользователь</option></select></div><div class="mb-3"><label class="form-label fw-semibold">Статус</label><select class="form-select rounded-3"><option selected>Активен</option><option>Заблокирован</option></select></div></form></div><div class="modal-footer"><button class="btn btn-outline-secondary rounded-3" data-bs-dismiss="modal">Отмена</button><button class="btn btn-dark rounded-3">Сохранить</button></div></div></div></div>
+    <div class="modal fade" id="editUser3" tabindex="-1" aria-hidden="true"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><h5 class="modal-title fw-bold">Редактировать</h5><button type="button" class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><form><div class="mb-3"><label class="form-label fw-semibold">Имя</label><input type="text" class="form-control rounded-3" value="Дмитрий Соколов" /></div><div class="mb-3"><label class="form-label fw-semibold">Email</label><input type="email" class="form-control rounded-3" value="dmitry.s@mail.ru" /></div><div class="mb-3"><label class="form-label fw-semibold">Роль</label><select class="form-select rounded-3"><option>Админ</option><option selected>Пользователь</option></select></div><div class="mb-3"><label class="form-label fw-semibold">Статус</label><select class="form-select rounded-3"><option>Активен</option><option selected>Заблокирован</option></select></div></form></div><div class="modal-footer"><button class="btn btn-outline-secondary rounded-3" data-bs-dismiss="modal">Отмена</button><button class="btn btn-dark rounded-3">Сохранить</button></div></div></div></div>
+    <div class="modal fade" id="editUser4" tabindex="-1" aria-hidden="true"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><h5 class="modal-title fw-bold">Редактировать</h5><button type="button" class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><form><div class="mb-3"><label class="form-label fw-semibold">Имя</label><input type="text" class="form-control rounded-3" value="Ольга Морозова" /></div><div class="mb-3"><label class="form-label fw-semibold">Email</label><input type="email" class="form-control rounded-3" value="olga.m@mail.ru" /></div><div class="mb-3"><label class="form-label fw-semibold">Роль</label><select class="form-select rounded-3"><option selected>Админ</option><option>Пользователь</option></select></div><div class="mb-3"><label class="form-label fw-semibold">Статус</label><select class="form-select rounded-3"><option selected>Активен</option><option>Заблокирован</option></select></div></form></div><div class="modal-footer"><button class="btn btn-outline-secondary rounded-3" data-bs-dismiss="modal">Отмена</button><button class="btn btn-dark rounded-3">Сохранить</button></div></div></div></div>
+    <div class="modal fade" id="editUser5" tabindex="-1" aria-hidden="true"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><h5 class="modal-title fw-bold">Редактировать</h5><button type="button" class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><form><div class="mb-3"><label class="form-label fw-semibold">Имя</label><input type="text" class="form-control rounded-3" value="Сергей Лебедев" /></div><div class="mb-3"><label class="form-label fw-semibold">Email</label><input type="email" class="form-control rounded-3" value="sergey.l@mail.ru" /></div><div class="mb-3"><label class="form-label fw-semibold">Роль</label><select class="form-select rounded-3"><option>Админ</option><option selected>Пользователь</option></select></div><div class="mb-3"><label class="form-label fw-semibold">Статус</label><select class="form-select rounded-3"><option selected>Активен</option><option>Заблокирован</option></select></div></form></div><div class="modal-footer"><button class="btn btn-outline-secondary rounded-3" data-bs-dismiss="modal">Отмена</button><button class="btn btn-dark rounded-3">Сохранить</button></div></div></div></div>
+    <div class="modal fade" id="editUser6" tabindex="-1" aria-hidden="true"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><h5 class="modal-title fw-bold">Редактировать</h5><button type="button" class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><form><div class="mb-3"><label class="form-label fw-semibold">Имя</label><input type="text" class="form-control rounded-3" value="Ирина Петрова" /></div><div class="mb-3"><label class="form-label fw-semibold">Email</label><input type="email" class="form-control rounded-3" value="irina.p@mail.ru" /></div><div class="mb-3"><label class="form-label fw-semibold">Роль</label><select class="form-select rounded-3"><option>Админ</option><option selected>Пользователь</option></select></div><div class="mb-3"><label class="form-label fw-semibold">Статус</label><select class="form-select rounded-3"><option selected>Активен</option><option>Заблокирован</option></select></div></form></div><div class="modal-footer"><button class="btn btn-outline-secondary rounded-3" data-bs-dismiss="modal">Отмена</button><button class="btn btn-dark rounded-3">Сохранить</button></div></div></div></div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
