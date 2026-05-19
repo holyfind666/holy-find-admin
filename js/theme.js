@@ -1,7 +1,7 @@
 $(() => {
     const SCHEMA_LIGHT = "light";
     const SCHEMA_DARK = "dark";
-    const pathCss = "../css";
+    const pathCss = "/css";
     let currentSchema;
 
     const getSchema = () => (currentSchema = localStorage.getItem("adminTheme"));
@@ -23,8 +23,8 @@ $(() => {
     };
 
     const updateIcons = (theme) => {
-        const sunIcon = '../img/sun.png';
-        const moonIcon = '../img/moon.png';
+        const sunIcon = 'img/sun.png';
+        const moonIcon = 'img/moon.png';
         
         $('.theme-icon-desktop, .theme-icon-offcanvas').attr('src', theme === SCHEMA_LIGHT ? sunIcon : moonIcon);
         $('.theme-text-offcanvas').text(theme === SCHEMA_LIGHT ? 'Светлая тема' : 'Тёмная тема');
