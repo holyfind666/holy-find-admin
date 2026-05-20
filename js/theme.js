@@ -1,7 +1,6 @@
-$(() => {
+$( () => {
     const SCHEMA_LIGHT = "light";
     const SCHEMA_DARK = "dark";
-    const pathCss = "/css";
     let currentSchema;
 
     const getSchema = () => (currentSchema = localStorage.getItem("adminTheme"));
@@ -16,7 +15,7 @@ $(() => {
                 .attr({
                     id: "theme-css",
                     rel: "stylesheet",
-                    href: `${pathCss}/${file}?t=${Date.now()}`,
+                    href: `${file}?t=${Date.now()}`,
                 })
                 .appendTo("head");
         }
