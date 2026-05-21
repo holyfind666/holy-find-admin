@@ -15,7 +15,7 @@ $( () => {
                 .attr({
                     id: "theme-css",
                     rel: "stylesheet",
-                    href: `${file}?t=${Date.now()}`,
+                    href: `css/${file}?t=${Date.now()}`,
                 })
                 .appendTo("head");
         }
